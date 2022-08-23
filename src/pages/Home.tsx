@@ -1,7 +1,13 @@
 import React from 'react'
+import CarouselBox from '../components/CarouselBox'
+import NavBar from '../components/Navbar'
 
 export default function Home() {
 	return (
-		<div>Home</div>
+		
+		<div>
+			<NavBar />
+			<CarouselBox />
+		</div>
 	)
 }
