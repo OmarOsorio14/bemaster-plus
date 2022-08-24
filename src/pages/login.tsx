@@ -2,27 +2,35 @@ import React, {useState} from 'react'
 import logo from '../assets/logo.png'
 import {email} from '../assets/credentials'
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from '../redux/hooks';
+import { useAppDispatch } from '../redux/hooks';
+import { login } from '../redux/userSlice'
 export default function Login() {
 
 	let navigate = useNavigate();
+	const dispatch = useAppDispatch();
+	const userEmail = useAppSelector(state => state.user.email)
 
-	const [emailUser, setEmailUser] = useState('')	
+	const [emailForm, setEmailForm] = useState('')	
 	const handleSubmit = (event : React.FormEvent<HTMLFormElement> ) =>{
 		event.preventDefault()
-		if(emailUser === email){
-			console.log("correcto")	
-			navigate("/", { replace: true });
+		if(emailForm === email){
+			console.log("correcto")
+			dispatch(login(emailForm))
+			//navigate("/", { replace: true });
 		}else{
 			console.log("incorrecto")	
+			console.log(userEmail)
+
 		}
 		}
 	const handleChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
-		setEmailUser(event.target.value)
+		setEmailForm(event.target.value)
 	}
 	return (
 		<div className='flex items-center flex-col w-screen h-screen'>
 			<img src={logo} alt="" className='w-40 mt-10' />
-			<p className='text-white font-bold text-xl my-4 '>Log in with your email</p>
+			<p className='text-white font-bold text-xl my-4 '>Log in with your email {userEmail}</p>
 			<form className="p-4 w-6/12 bg-slate-50 text-left rounded-lg" onSubmit={handleSubmit}>
 			
 				<div className="relative z-0 w-full mb-6 group">
