@@ -20,7 +20,6 @@ export default function ContentDetails() {
 					setTrailer(result.key)
 				}
 			})
-			console.log(response.data.videos.results[0])
 		} )
 	},[id])
 	return (
