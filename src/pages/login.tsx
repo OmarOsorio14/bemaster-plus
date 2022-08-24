@@ -4,6 +4,7 @@ import {email} from '../assets/credentials'
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from '../redux/hooks';
 import { useAppDispatch } from '../redux/hooks';
+import toast from 'react-hot-toast'
 import { login } from '../redux/userSlice'
 export default function Login() {
 
@@ -15,12 +16,11 @@ export default function Login() {
 	const handleSubmit = (event : React.FormEvent<HTMLFormElement> ) =>{
 		event.preventDefault()
 		if(emailForm === email){
-			console.log("correcto")
 			dispatch(login(emailForm))
-			//navigate("/", { replace: true });
+			toast.success('Welcome back!');
+			navigate("/", { replace: true });
 		}else{
-			console.log("incorrecto")	
-			console.log(userEmail)
+			toast.error('that user does not exist');
 
 		}
 		}

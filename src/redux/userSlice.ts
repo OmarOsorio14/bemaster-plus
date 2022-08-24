@@ -5,7 +5,7 @@ interface UserState{
 }
 
 const initialState : UserState ={
-	email: 'hola'
+	email: ''
 }
 
 const userSlice = createSlice({

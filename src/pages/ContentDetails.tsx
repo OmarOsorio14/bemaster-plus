@@ -6,6 +6,11 @@ export default function ContentDetails() {
 	const {id} = useParams()
 	const [trailer, setTrailer] = useState<string>('')
 	const [description, setDescription] = useState<string>('')
+	const [rating, setRating] = useState(3)
+	const handleRating = (rate: number) => {
+    setRating(rate)
+  
+  }
 	useEffect(() => {
 		axios.get(`http://api.themoviedb.org/3/movie/${id}?api_key=e0bb6b1050a046af521d54e5019d03ae&append_to_response=videos`)
 		.then(response =>{
